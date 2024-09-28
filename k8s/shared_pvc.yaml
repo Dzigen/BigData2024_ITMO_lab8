@@ -2,7 +2,10 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: shared-pvc
+  labels:
+    type: local-shared
 spec:
+  storageClassName: manual
   accessModes:
     - ReadWriteMany
   resources:
@@ -10,4 +13,4 @@ spec:
       storage: 1Gi
   selector:
     matchLabels:
-      type: local_shared
+      type: local-shared
