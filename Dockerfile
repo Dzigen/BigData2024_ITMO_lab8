@@ -21,8 +21,8 @@ COPY ./src /app/src
 COPY ./main.py /app/main.py
 COPY ./jars /jars
 COPY ./data/small_openfoodfacts.csv /data/small_openfoodfacts.csv
-COPY ./configs /configs
 
+COPY ./configs/config.ini /configs/config.ini
 RUN ls -la /configs
 RUN cat /configs/config.ini
 

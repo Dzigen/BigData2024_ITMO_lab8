@@ -3,7 +3,7 @@ kind: PersistentVolume
 metadata:
   name: configs-pv
   labels:
-    type: local-configs
+    configs: local
 spec:
   storageClassName: manual
   capacity:

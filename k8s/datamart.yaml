@@ -5,10 +5,11 @@ metadata:
   labels:
     app: datamart
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: datamart
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
@@ -30,6 +31,7 @@ spec:
         volumeMounts:
         - name: shared-volume
           mountPath: /shared
+          readOnly: false
       volumes:
       - name: shared-volume
         persistentVolumeClaim:
@@ -38,10 +40,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata: 
-  name: datamart-service
+  name: datamartservice
 spec:
   selector:
     app: datamart
   ports:
     - port: 9000
       targetPort: 9000
+      protocol: TCP
+  clusterIP: None

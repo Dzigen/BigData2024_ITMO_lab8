@@ -1,7 +1,8 @@
 import mysql.connector as c
 import pandas as pd
+import configparser
 
-def init_database(config, dataset_dir='../data'):
+def init_database(config, dataset_dir='./data'):
     DF = pd.read_csv(f"{dataset_dir}/{config['dataset']['name']}", sep='\t')
 
     DB_CONNECTION = c.connect(
@@ -39,3 +40,10 @@ def init_database(config, dataset_dir='../data'):
     DB_CONNECTION.commit()
     db_cursor.close()
     DB_CONNECTION.close()
+
+if __name__ == '__main__':
+    CONFIG_PATH = './configs/config.ini'
+    config = configparser.ConfigParser()
+    config.read(CONFIG_PATH)
+
+    init_database(config)

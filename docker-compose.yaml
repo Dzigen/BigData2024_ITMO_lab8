@@ -1,8 +1,8 @@
 version: "3"
 services:
   mysql:
-    container_name: mysql-serice
-    hostname: mysql-service
+    container_name: mysql-service
+    hostname: mysqlservice
     ports:
       - "3306:3306"
     image: "mysql:8.4"
@@ -29,7 +29,7 @@ services:
       - shared:/shared
     depends_on:
       - mysql
-      #- datamart
+      - datamart
 
 volumes:
   shared:

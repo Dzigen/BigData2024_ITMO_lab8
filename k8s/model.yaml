@@ -7,25 +7,19 @@ metadata:
 spec:
   containers:
   - name: model
-    image: "spark:v1"
+    image: "my_spark:v1"
     resources: 
       requests: 
-        memory: "4Gi"
+        memory: "8Gi"
         cpu: "2"
       limits:
-        memory: "8Gi"
+        memory: "16Gi"
         cpu: "4"
     volumeMounts:
-    - name: shared-volume
-      mountPath: /shared
-      readOnly: false
-    - name: configs-volume
-      mountPath: /configs
+    - mountPath: /shared
+      name: shared-volume
       readOnly: false
   volumes:
   - name: shared-volume
     persistentVolumeClaim:
       claimName: shared-pvc
-  - name: configs-volume
-    persistentVolumeClaim:
-      claimName: configs-pvc
