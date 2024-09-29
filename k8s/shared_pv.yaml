@@ -11,4 +11,4 @@ spec:
   accessModes:
     - ReadWriteMany
   hostPath:
-    path: /mnt/data/shared/
+    path: "/home/dzigen/Desktop/ITMO/sem2/BigData/Лабы/lab8/data/shared/"
