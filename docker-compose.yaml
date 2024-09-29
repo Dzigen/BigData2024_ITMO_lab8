@@ -9,7 +9,7 @@ services:
       - MYSQL_DATABASE=dataset
       - MYSQL_ROOT_PASSWORD=password
     volumes:
-      - ./data/mysql_volume:/var/lib/mysql
+      - ../mysql_volume:/var/lib/mysql
 
   datamart:
     container_name: datamart_service

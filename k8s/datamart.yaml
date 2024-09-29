@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: datamart-deployment
+  labels:
+    app: datamart
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: datamart
+  template:
+    metadata:
+      labels:
+        app: datamart
+    spec:
+      containers:
+      - name: datamart
+        image: "datamart:v1"
+        resources: 
+          requests: 
+            memory: "2Gi"
+            cpu: "0.5"
+          limits:
+            memory: "5Gi"
+            cpu: "1"
+        ports:
+        - containerPort: 9000
+          name: datamart
+        volumeMounts:
+        - name: shared-volume
+          mountPath: /shared
+      volumes:
+      - name: shared-volume
+        persistentVolumeClaim:
+          claimName: shared-pvc
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: datamart-service
+spec:
+  selector:
+    app: datamart
+  ports:
+    - port: 9000
+      targetPort: 9000

@@ -3,7 +3,7 @@ import org.apache.spark.sql.{DataFrame, SparkSession}
 import com.typesafe.scalalogging.Logger
 
 class MySQLConnector(spark: SparkSession) {
-  private val HOST = "mysql_service"
+  private val HOST = "mysql-service"
   private val PORT = 3306
   private val DATABASE = "dataset"
   private val JDBC_URL = s"jdbc:mysql://$HOST:$PORT/$DATABASE"

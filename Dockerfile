@@ -20,5 +20,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY ./src /app/src
 COPY ./main.py /app/main.py
 COPY ./jars /jars
+COPY ./data/small_openfoodfacts.csv /data/small_openfoodfacts.csv
 
 ENTRYPOINT [ "python", "main.py"]

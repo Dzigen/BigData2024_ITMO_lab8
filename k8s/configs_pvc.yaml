@@ -1,16 +1,16 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mysql-pvc
+  name: configs-pvc
   labels:
-    type: local-mysql
+    type: local-configs
 spec:
   storageClassName: manual
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 5Gi
+      storage: 1Gi
   selector:
     matchLabels:
-      type: local-mysql
+      type: local-configs

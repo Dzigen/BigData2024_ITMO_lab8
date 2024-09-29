@@ -19,10 +19,10 @@ spec:
         image: "mysql:8.4"
         resources: 
           requests: 
-            memory: "5Gi"
+            memory: "2Gi"
             cpu: "0.5"
           limits:
-            memory: "10Gi"
+            memory: "5Gi"
             cpu: "1"
         env:
         - name: MYSQL_ROOT_PASSWORD
