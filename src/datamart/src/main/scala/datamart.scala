@@ -12,11 +12,12 @@ object DataMart {
   private val EXECUTOR_MEMORY = "2g"
   private val EXECUTOR_CORES = 1
   private val DRIVER_CORES = 1
+  private val JARS = "/opt/spark/jars/scala-logging_2.12-3.9.3.jar,/opt/spark/jars/mysql-connector-j-8.4.0.jar"
   private val MYSQL_CONNECTOR_JAR = "/opt/spark/jars/mysql-connector-j-8.4.0.jar"
   private val PARQUET_PATH = "/shared/parquet_openfoodfacts.parquet"
   private val DYNAMIC_ALLOCATION = false
   private val MIN_EXECUTORS = 1
-  private val MAX_EXECUTORS = 5
+  private val MAX_EXECUTORS = 3
   private val INITIAL_EXECUTORS = 2
 
   val session = SparkSession.builder
@@ -30,7 +31,7 @@ object DataMart {
     .config("spark.dynamicAllocation.minExecutors", MIN_EXECUTORS)
     .config("spark.dynamicAllocation.maxExecutors", MAX_EXECUTORS)
     .config("spark.dynamicAllocation.initialExecutors", INITIAL_EXECUTORS)
-    .config("spark.jars", MYSQL_CONNECTOR_JAR)
+    .config("spark.jars", JARS)
     .config("spark.driver.extraClassPath", MYSQL_CONNECTOR_JAR)
     .config("spark.executor.extraClassPath", MYSQL_CONNECTOR_JAR)
     .getOrCreate()

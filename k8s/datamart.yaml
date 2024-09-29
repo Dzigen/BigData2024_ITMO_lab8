@@ -10,11 +10,11 @@ spec:
     image: "datamart:v1"
     resources: 
       requests: 
-        memory: "2Gi"
-        cpu: "0.5"
-      limits:
-        memory: "5Gi"
+        memory: "4Gi"
         cpu: "1"
+      limits:
+        memory: "8Gi"
+        cpu: "2"
     volumeMounts:
     - name: shared-volume
       mountPath: /shared
