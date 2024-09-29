@@ -1,51 +1,25 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Pod
 metadata:
-  name: datamart-deployment
+  name: datamart
   labels:
     app: datamart
 spec:
-  selector:
-    matchLabels:
-      app: datamart
-  strategy:
-    type: Recreate
-  template:
-    metadata:
-      labels:
-        app: datamart
-    spec:
-      containers:
-      - name: datamart
-        image: "datamart:v1"
-        resources: 
-          requests: 
-            memory: "2Gi"
-            cpu: "0.5"
-          limits:
-            memory: "5Gi"
-            cpu: "1"
-        ports:
-        - containerPort: 9000
-          name: datamart
-        volumeMounts:
-        - name: shared-volume
-          mountPath: /shared
-          readOnly: false
-      volumes:
-      - name: shared-volume
-        persistentVolumeClaim:
-          claimName: shared-pvc
----
-apiVersion: v1
-kind: Service
-metadata: 
-  name: datamartservice
-spec:
-  selector:
-    app: datamart
-  ports:
-    - port: 9000
-      targetPort: 9000
-      protocol: TCP
-  clusterIP: None
+  containers:
+  - name: datamart
+    image: "datamart:v1"
+    resources: 
+      requests: 
+        memory: "2Gi"
+        cpu: "0.5"
+      limits:
+        memory: "5Gi"
+        cpu: "1"
+    volumeMounts:
+    - name: shared-volume
+      mountPath: /shared
+      readOnly: false
+  volumes:
+  - name: shared-volume
+    persistentVolumeClaim:
+      claimName: shared-pvc

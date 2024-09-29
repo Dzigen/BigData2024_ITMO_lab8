@@ -12,7 +12,7 @@ print(os.listdir("/configs"))
 config = configparser.ConfigParser()
 config.read(CONFIG_PATH)
 
-#init_database(config, dataset_dir='/data')
+init_database(config, dataset_dir='/data')
 
 JARS = ','.join([f"{config['jars']['jars_dir']}/{jar_file}" for jar_file in 
         [config['jars']['mysql_jar'], config['jars']['datamart_jar'], 
