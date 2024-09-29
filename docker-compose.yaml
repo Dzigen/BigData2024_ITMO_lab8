@@ -1,7 +1,8 @@
 version: "3"
 services:
   mysql:
-    container_name: mysql_service
+    container_name: mysql-serice
+    hostname: mysql-service
     ports:
       - "3306:3306"
     image: "mysql:8.4"
@@ -12,7 +13,7 @@ services:
       - ../mysql_volume:/var/lib/mysql
 
   datamart:
-    container_name: datamart_service
+    container_name: datamart-service
     image: "datamart:v1"
     ports:
       - '9000:9000'
@@ -22,14 +23,13 @@ services:
       - mysql
 
   spark:
-    container_name: spark_app
+    container_name: spark-app
     image: "spark:v1"
     volumes:
       - shared:/shared
-      - ./configs:/configs
     depends_on:
       - mysql
-      - datamart
+      #- datamart
 
 volumes:
   shared:

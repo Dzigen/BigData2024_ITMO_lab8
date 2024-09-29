@@ -21,5 +21,9 @@ COPY ./src /app/src
 COPY ./main.py /app/main.py
 COPY ./jars /jars
 COPY ./data/small_openfoodfacts.csv /data/small_openfoodfacts.csv
+COPY ./configs /configs
+
+RUN ls -la /configs
+RUN cat /configs/config.ini
 
 ENTRYPOINT [ "python", "main.py"]

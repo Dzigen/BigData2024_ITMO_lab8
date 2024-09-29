@@ -8,6 +8,8 @@ from src import Logger, KMeansConnector, MySQLConnectorConfig, MySQLConnector, i
 
 CONFIG_PATH = '/configs/config.ini'
 
+print(os.listdir("/configs"))
+
 config = configparser.ConfigParser()
 config.read(CONFIG_PATH)
 
